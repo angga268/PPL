@@ -1,0 +1,180 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Mental Health Checker
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+ </head>
+ <body class="bg-gray-100 font-roboto">
+  <div class="container mx-auto p-4">
+   <div class="bg-white shadow-md rounded-lg p-6 relative">
+    <div class="flex items-center mb-4">
+     <img alt="Logo of the Mental Health Checker app, featuring a silhouette head with puzzled brain" class="w-12 h-auto max-w-full mr-3" height="50" src="https://storage.googleapis.com/a1aa/image/B46HZUz83yrAChkhiInDszpk9sXZraVwVSeWThJG51rZEnBKA.jpg" width="50"/>
+     <h1 class="text-2xl font-bold">
+      LIVE ON : Mental Health Self-Assessment Tool
+     </h1>
+    </div>
+    <form id="assessmentForm">
+     <div class="mb-4">
+      <label class="block text-gray-700" for="name">
+       What's your name? (You can use a nickname if you prefer):
+      </label>
+      <input class="mt-1 block w-full border border-gray-300 rounded-md p-2" id="name" name="name" required="" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="mood">
+       How are you feeling today?
+      </label>
+      <input class="mt-1 block w-full border border-gray-300 rounded-md p-2" id="mood" name="mood" required="" type="text"/>
+     </div>
+     <div class="mb-4">
+      <h2 class="text-xl font-semibold mb-2">
+       Rating Scale Guide:
+      </h2>
+      <p>
+       1: Not at all
+      </p>
+      <p>
+       2: Several days
+      </p>
+      <p>
+       3: More than half the days
+      </p>
+      <p>
+       4: Nearly every day
+      </p>
+      <p>
+       5: Every day
+      </p>
+     </div>
+     <div class="mb-4">
+      <h2 class="text-xl font-semibold mb-2">
+       Questions:
+      </h2>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="q1">
+        How often have you felt down, depressed, or hopeless?
+       </label>
+       <input class="mt-1 block w-full border border-gray-300 rounded-md p-2" id="q1" max="5" min="1" name="q1" required="" type="number"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="q2">
+        How often have you had little interest or pleasure in doing things?
+       </label>
+       <input class="mt-1 block w-full border border-gray-300 rounded-md p-2" id="q2" max="5" min="1" name="q2" required="" type="number"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="q3">
+        How often have you felt anxious or worried?
+       </label>
+       <input class="mt-1 block w-full border border-gray-300 rounded-md p-2" id="q3" max="5" min="1" name="q3" required="" type="number"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="q4">
+        How often have you had trouble sleeping?
+       </label>
+       <input class="mt-1 block w-full border border-gray-300 rounded-md p-2" id="q4" max="5" min="1" name="q4" required="" type="number"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="q5">
+        How often have you felt overwhelmed?
+       </label>
+       <input class="mt-1 block w-full border border-gray-300 rounded-md p-2" id="q5" max="5" min="1" name="q5" required="" type="number"/>
+      </div>
+     </div>
+     <button class="bg-blue-500 text-white px-4 py-2 rounded-md" type="submit">
+      Submit
+     </button>
+    </form>
+   </div>
+   <div class="bg-white shadow-md rounded-lg p-6 mt-6 hidden" id="results">
+    <h2 class="text-2xl font-bold mb-4">
+     Assessment Results
+    </h2>
+    <p class="text-gray-700" id="resultName">
+    </p>
+    <p class="text-gray-700" id="resultMood">
+    </p>
+    <p class="text-gray-700" id="resultScore">
+    </p>
+    <h3 class="text-xl font-semibold mt-4">
+     Detailed Response Summary:
+    </h3>
+    <ul class="list-disc list-inside text-gray-700" id="responseSummary">
+    </ul>
+    <h3 class="text-xl font-semibold mt-4">
+     Feedback and Recommendations:
+    </h3>
+    <p class="text-gray-700" id="feedback">
+    </p>
+    <h3 class="text-xl font-semibold mt-4">
+     Helpful Resources:
+    </h3>
+    <ul class="list-disc list-inside text-gray-700">
+     <li>
+      Crisis Hotline: 988
+     </li>
+     <li>
+      National Alliance on Mental Illness: 1-800-950-NAMI (6264)
+     </li>
+     <li>
+      Crisis Text Line: Text HOME to 741741
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="fixed bottom-0 right-0 p-4 text-gray-500 text-sm">
+   <p>
+    By Angga Agustian (20220040114) TI22T
+   </p>
+  </div>
+  <script>
+   document.getElementById('assessmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const mood = document.getElementById('mood').value;
+            const responses = [
+                parseInt(document.getElementById('q1').value),
+                parseInt(document.getElementById('q2').value),
+                parseInt(document.getElementById('q3').value),
+                parseInt(document.getElementById('q4').value),
+                parseInt(document.getElementById('q5').value)
+            ];
+            const averageScore = responses.reduce((a, b) => a + b, 0) / responses.length;
+            let riskLevel = '';
+            if (averageScore >= 4) {
+                riskLevel = 'high';
+            } else if (averageScore >= 3) {
+                riskLevel = 'moderate';
+            } else {
+                riskLevel = 'low';
+            }
+            document.getElementById('resultName').innerText = `Name: ${name}`;
+            document.getElementById('resultMood').innerText = `Current Mood: ${mood}`;
+            document.getElementById('resultScore').innerText = `Average Assessment Score: ${averageScore.toFixed(1)}/5.0`;
+            const responseSummary = document.getElementById('responseSummary');
+            responseSummary.innerHTML = `
+                <li>How often have you felt down, depressed, or hopeless?: ${responses[0]}/5</li>
+                <li>How often have you had little interest or pleasure in doing things?: ${responses[1]}/5</li>
+                <li>How often have you felt anxious or worried?: ${responses[2]}/5</li>
+                <li>How often have you had trouble sleeping?: ${responses[3]}/5</li>
+                <li>How often have you felt overwhelmed?: ${responses[4]}/5</li>
+            `;
+            const feedback = document.getElementById('feedback');
+            if (riskLevel === 'high') {
+                feedback.innerText = "Your responses indicate you might be experiencing significant distress. It's strongly recommended to reach out to a mental health professional.";
+            } else if (riskLevel === 'moderate') {
+                feedback.innerText = "You appear to be facing some challenges. Consider speaking with a counselor or therapist for support.";
+            } else {
+                feedback.innerText = "Your responses suggest you're managing well overall. Continue practicing self-care and maintaining support systems.";
+            }
+            document.getElementById('results').classList.remove('hidden');
+        });
+  </script>
+ </body>
+</html>
